@@ -1,0 +1,85 @@
+<HTML>
+<HEAD>
+<TITLE>HTML Assessment Test</TITLE>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript"> 
+        window.history.forward(); 
+        function noBack() { 
+            window.history.forward(); 
+        } 
+    </script>
+<STYLE>
+#d1{
+display : block;
+color : white;
+background-color : red;
+text-align : center;
+height : 45px;
+font-size : 40px;}
+#d2{
+color : gold;
+font-size : 24px;}
+#b{
+color : gold;
+background-color : black;
+cursor: pointer;
+height : 50px;
+width : 100px;
+font-size : 25px;
+}
+#d3{
+color : gold;
+font-size : 24px;}
+</STYLE>
+</HEAD>
+<BODY bgcolor = "#0000ff">
+<form method = "post" action = "">
+<DIV ID = "d1">HTML Assessment Test</DIV>
+<br><br>
+<div id = "d2">
+Dear Sagar, Please go through the online test instructions before you commence the test.<br><br>
+<font size = "16px" color = "green"><b><u>Instructions :</u></b></font><br><br>
+<div id = "d3">
+<ol type = "1">
+<li>On commencing the test, the clock displays the remaining duration of the test.<br><br>
+<li>Total Number of questions : <b><font color = "yellow">10</font></b> and test Duration : <b><font color = "yellow"> 5 minutes </font></b><br><br>
+<li><b><font color = "yellow">There is no negative marking</font></b><br><br>
+<li><b><font color = "yellow">You can give test today and then will be allowed to give test after a month.</font></b><br><br>
+<li>If you are found <b><font color = "yellow">cheating</font></b>, test will end abruptly.<br><br>
+<li><b><font color = "yellow">You cannot press any keyboard key and right click your mouse during the test. If you do so, test will be submitted automatically.</font></b><br><br>
+<li>Click Question Number to view the respective question only.<br><br>
+<li>Question type is <b><font color = "yellow">MCQ</font></b>. Each question has only one option as answer.<br><br>
+<li>Check the appropriate answer and navigate to the next question by clicking <b><font color = "yellow">Next</font></b> button or the corresponding question number.<br><br>
+<li>At any point of time you can click <b><font color = "yellow">Prev</font></b> button to go to the previous question.<br><br>
+<li>You can clear option using <b><font color = "yellow">Clear</font></b> button or change the option by clicking on another option.<br><br>
+<li>The following color codes are used in the test : <button style = "background-color : #0CF53C">4</button>&nbsp;&nbsp;Answered&nbsp;&nbsp;&nbsp;&nbsp;<button style = "background-color : red">7</button>&nbsp;&nbsp;Not Answered&nbsp;&nbsp;&nbsp;&nbsp;<button style = "background-color : white">2</button>&nbsp;&nbsp;Not Visited<br><br>
+<li>Once you have completed the test, you can proceed to click Submit to finish the test. Submit button will appear on last question.<br><br>
+<li>The test will end automatically when time ends.<br><br>
+<li>When test ends abruptly due to power failure, problem due to internet connection or any other reason, the online test session will be disabled and you cannot continue further. To resume the test, contact the associated person.<br><br>
+</ol>
+<input type = "checkbox" id = "read">&nbsp;&nbsp;I have read all the instructions and ready to give the test.
+</div>
+<br>
+<br>
+</div>
+<center><input type = "submit" id = "b" value = "Start" onclick = "openPopup()"></center>
+</form>
+<script type="text/javascript">
+
+var popup;
+var a = document.getElementById("read");
+function openPopup()
+
+{
+if(a.checked){
+popup = window.open("htmlassessment.html",'full', 'height=800,width=1600')}
+else{
+alert("Please read the instructions carefully and click on the box");
+event.preventDefault();
+}
+
+}
+</script>
+
+</BODY>
+</HTML>

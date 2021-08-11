@@ -1,0 +1,335 @@
+<html>
+<head>
+<title>HTML Assessment</title>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+ 
+<script type="text/javascript"> 
+        window.history.forward(); 
+        function noBack() { 
+            window.history.forward(); 
+        } 
+    </script>
+
+
+
+<style>
+body{
+overflow : hidden;
+}
+
+.b{
+color : gold;
+background-color : black;
+cursor: pointer;
+height : 50px;
+width : 100px;
+font-size : 25px;
+}
+
+#d8 {
+	
+	height : 80%;
+	overflow-y: scroll;
+}
+#d1{
+color : white;
+background-color : black;}
+.ques{
+font-size : 24px;}
+#submit{
+display : none;
+}
+#prev{
+display : none;
+}
+#sub{
+color : gold;
+background-color : black;
+cursor: pointer;
+height : 50px;
+width : 100px;
+font-size : 25px;}
+</style>
+<script>
+function sub(){
+document.getElementById("myform").submit();
+}
+</script>
+
+</head>
+<body onkeydown = "sub()">
+
+<div oncontextmenu="javascript:sub();return false;">
+<div id = "d1"><center>HTML Assessment Test</center></div>
+<div style="float:right; width:21%;"><br>
+<span style="float:right; width:50%;"><b>Sagar Sharma</b></span>
+<span style="float:right; width:50%;"><img src = "admin.jpg" width = "50px" height = "50px"></img></span><br><br><br>
+<hr color = "red"><br>
+<div style = "border :solid black;"><button style = "background-color : #0CF53C">4</button>&nbsp;&nbsp;Answered&nbsp;&nbsp;&nbsp;&nbsp;<button style = "background-color : red">7</button>&nbsp;&nbsp;Not Answered<br><br>
+<button style = "background-color : white">2</button>&nbsp;&nbsp;Not Visited<br><br>
+<div style = "background-color :#0000ff; color : gold; font-size:26px;"><center>Question Number</center></div>
+<div style = "background-color : #0CF5DE
+"><br><br>
+<?php 
+$i = 1;
+for( ; $i<=10 ;$i++){
+if($i == 1){
+echo "<button class = 'question' style = 'font-size : 24px; width : 50px; cursor : pointer; background-color : red;' onclick = 'ch(this);' >";
+echo $i;
+echo "</button>";
+echo "&nbsp;&nbsp;";
+}
+else{
+echo "<button class = 'question' style = 'font-size : 24px; width : 50px; cursor : pointer; background-color : white;' onclick = 'ch(this);'>";
+echo $i;
+echo "</button>";
+echo "&nbsp;&nbsp;";
+if($i == 4 or $i == 8){
+echo "<br><br>";}
+}
+}
+?>
+<br><br>
+</div>
+</div>
+</div><br>
+<div style="float:left; width:78%;border :solid black;"><font color = "red">Question Type : MCQ</font><span style="float:right; width:15%; font-weight: bold;" id = "demo">Time Left : 5:00</span></div>
+<br><br><br>
+<div style="float:left;width:78%;" id= "d8">
+
+<form action = "htmlans.php" method = "post" id = "myform">
+<?php
+$host = "localhost";
+$dbUsername = "something";
+$dbPassword = "something";
+$dbname = "assessment";
+$conn = new mysqli($host,$dbUsername,$dbPassword,$dbname);
+if(mysqli_connect_error()){
+die('Connect Error('. mysqli_connect_error(). ')'. mysqli_connect_error());
+}
+else{
+$s = "SELECT question,op1,op2,op3,op4 FROM htmlas";
+$result = $conn->query($s);
+$i = 1;
+
+
+while($row = $result->fetch_assoc()){
+if($i == 1){
+echo "<div class = 'ques'>";
+echo "<font size = '24px'><b>Question";
+echo "&nbsp;&nbsp;";
+echo $i;
+echo "</b></font>";
+echo "<br><br>";
+$j = strval($i);
+echo $row["question"];
+echo "<br><br>";
+echo "<input type = 'radio' name = '$j' onclick = 'rch(this);' value = 'A'>";
+echo "<xmp>";
+echo $row["op1"];
+echo "</xmp>";
+echo "<br><br>";
+echo "<input type = 'radio' name = '$j' onclick = 'rch(this);' value = 'B'>";
+echo "<xmp>";
+echo $row["op2"];
+echo "</xmp>";
+echo "<br><br>";
+echo "<input type = 'radio' name = '$j' onchange = 'rch(this);' value = 'C'>";
+echo "<xmp>";
+echo $row["op3"];
+echo "</xmp>";
+echo "<br><br>";
+echo "<input type = 'radio' name = '$j' onchange = 'rch(this);' value = 'D'>";
+echo "<xmp>";
+echo $row["op4"];
+echo "</xmp>";
+echo "<br><br>";
+echo "</div>";
+$i = $i+1;
+}
+else{
+echo "<div class = 'ques' style = 'display : none;'>";
+echo "<font size = '24px'><b>Question";
+echo "&nbsp;&nbsp;";
+echo $i;
+echo "</b></font>";
+echo "<br><br>";
+$j = strval($i);
+echo $row["question"];
+echo "<br><br>";
+echo "<input type = 'radio' name = '$j' onchange = 'rch(this);' value = 'A'>";
+echo "<xmp>";
+echo $row["op1"];
+echo "</xmp>";
+echo "<br><br>";
+echo "<input type = 'radio' name = '$j' onchange = 'rch(this);' value = 'B'>";
+echo "<xmp>";
+echo $row["op2"];
+echo "</xmp>";
+echo "<br><br>";
+echo "<input type = 'radio' name = '$j' onchange = 'rch(this);' value = 'C'>";
+echo "<xmp>";
+echo $row["op3"];
+echo "</xmp>";
+echo "<br><br>";
+echo "<input type = 'radio' name = '$j' onchange = 'rch(this);' value = 'D'>";
+echo "<xmp>";
+echo $row["op4"];
+echo "</xmp>";
+echo "<br><br>";
+echo "</div>";
+$i = $i+1;
+}
+}
+}
+?>
+
+<span style = "float : right; width : 20%" id = "submit"><br><br><input type = "submit" value = "Submit" id = "sub"></span>
+</form>
+<button class = "b" onclick = "cle()" >Clear</button><br><br>
+
+
+<span style = "float : right; width : 20%" id = "next"><button class = "b" onclick = "next()">Next</button></span>
+
+<span id = "prev"><button class = "b" onclick = "prev()">Prev</button></span>
+
+
+<br><br>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+function ch(x){
+var a = x.innerText;
+var b = parseInt(a);
+var y = document.getElementsByClassName('question');
+var c = document.getElementsByClassName('ques');
+var i = 0;
+for( ; i<10 ;i++){
+if($(c[i]).is(":visible")){
+c[i].style.display = "none";
+break;
+}
+}
+c[b-1].style.display = "block";
+var w = y[b-1].style.backgroundColor;
+if(w == "white"){
+y[b-1].style.background = "red";}
+if(b == 1){
+document.getElementById("prev").style.display = "none";
+document.getElementById("next").style.display = "block";
+document.getElementById("submit").style.display = "none";
+}
+else if(b == 10){
+document.getElementById("prev").style.display = "block";
+document.getElementById("next").style.display = "none";
+document.getElementById("submit").style.display = "block";
+}
+else{
+document.getElementById("prev").style.display = "block";
+document.getElementById("next").style.display = "block";
+document.getElementById("submit").style.display = "none";
+}
+}
+</script>
+<script>
+function next(){
+var x = document.getElementsByClassName("ques");
+var y = document.getElementsByClassName("question");
+var i = 0;
+for( ; i<9; i++){
+if($(x[i]).is(":visible")){
+x[i].style.display = "none";
+x[i+1].style.display = "block";
+var w = y[i+1].style.backgroundColor;
+if(w == "white"){
+y[i+1].style.background = "red";}
+if(i == 8){
+document.getElementById("prev").style.display = "block";
+document.getElementById("next").style.display = "none";
+document.getElementById("submit").style.display = "block";
+}
+else{
+document.getElementById("prev").style.display = "block";
+document.getElementById("next").style.display = "block";
+document.getElementById("submit").style.display = "none";
+}
+break;
+}
+}
+}
+function prev(){
+var x = document.getElementsByClassName("ques");
+var y = document.getElementsByClassName("question");
+var i = 1;
+for( ; i<10; i++){
+if($(x[i]).is(":visible")){
+x[i].style.display = "none";
+x[i-1].style.display = "block";
+var w = y[i-1].style.backgroundColor;
+if(w == "white"){
+y[i-1].style.background = "red";}
+if(i == 1){
+document.getElementById("prev").style.display = "none";
+document.getElementById("next").style.display = "block";
+document.getElementById("submit").style.display = "none";}
+else{
+document.getElementById("prev").style.display = "block";
+document.getElementById("next").style.display = "block";
+document.getElementById("submit").style.display = "none";
+}
+break;
+}
+}
+}
+</script>
+<script>
+function rch(x){
+var w = x.name;
+var e = parseInt(w);
+var v = document.getElementsByClassName("question");
+v[e-1].style.background = "#0CF53C";
+}
+</script>
+<script>
+function cle(){
+var x = document.getElementsByClassName("ques");
+var y = document.getElementsByClassName("question");
+var i = 0;
+for( ; i<10 ;i++){
+if($(x[i]).is(":visible")){
+y[i].style.background = "red";
+i = i+1;
+var j = i.toString();
+var w = document.getElementsByName(j);
+w[0].checked = false;
+w[1].checked = false;
+w[2].checked = false;
+w[3].checked = false;
+break;
+}
+}
+}
+</SCRIPT>
+<script>
+var countDownDate = new Date().getTime();
+var v = Math.floor(countDownDate/1000);
+var w = v+300;
+var x = setInterval(function() {
+var now = new Date().getTime();
+var c = Math.floor(now/1000);
+var distance = w - c;
+var m = Math.floor(distance/60);
+var s = Math.floor(distance%60);
+document.getElementById("demo").innerHTML = "Time Left : "+m+" : "+s;
+if(m==0){
+document.getElementById("demo").style.color = "red";
+}
+if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("myform").submit();
+  }
+}, 1000);
+</script>
+</body>
+</html>

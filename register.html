@@ -1,0 +1,202 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Register with Profiln</title>
+<style>
+#d1{
+background-color : #0000ff;
+color : gold;
+width : 50%;
+
+}
+#u{
+color : gold;
+font-weight: bold;
+}
+#p{
+color : gold;
+font-weight: bold;
+}
+#cp{
+color : gold;
+font-weight: bold;
+}
+.d2{
+background-color : red;
+color : white;
+text-align : center;
+font-size : 36px;
+width : 100%;
+}
+.icon {
+  padding: 10px;
+  background: white;
+  color: black;
+  min-width: 20px;
+  text-align: center;
+  min-height : 18px;
+  border : none;
+}
+.b{
+color: gold;background-color: black;display: inline-block;
+  font-size: 20px;
+  height : 32px;
+  text-align: center; cursor: pointer;
+}
+</style>
+</head>
+<body BGCOLOR = "#CDBE42">
+<?php 
+$a = date("Y-m-d h:i:sa");
+$host = "localhost";
+$dbUsername = "something";
+$dbPassword = "something";
+$dbname = "assessment";
+$conn = new mysqli($host,$dbUsername,$dbPassword,$dbname);
+if(mysqli_connect_error()){
+die('Connect Error('. mysqli_connect_error(). ')'. mysqli_connect_error());
+}
+else{
+$select = "SELECT date from username where verify = 0";
+$result = $conn->query($select);
+while($row = $result->fetch_array()){
+$x = $row["date"];
+if($a > $x){
+$del = "DELETE from username where date = '$x' ";
+$conn->query($del);
+}
+}
+}
+$conn->close();
+?>
+<br><br><br><br><br><br><br><br>
+<div id = "d">
+<center><div id = "d1">
+<div class = "d2">Register with Profiln</div>
+<br>
+<br>
+<center><i class="fa fa-envelope icon"></i><input type = "text" id = "email" placeholder = "Email" style = "width : 80%; height : 38px; border : none; font-family: monospace;"></center>
+<br>
+<br>
+<button class = "b" onclick = "ver()">Verify</button>
+<br>
+<br>
+</div>
+</center>
+</div>
+<script>
+function ver(){
+var b = document.getElementById("email").value;
+document.getElementById("email").innerHTML = "";
+var c = document.getElementById("d").innerHTML;
+var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("d1").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "vemail.php?q=" + b + "&k="+ c , true);
+        xmlhttp.send();
+}
+
+</script>
+<script>
+function otp(){
+var a = document.getElementById("otp").value;
+var b = document.getElementById("email").value;
+var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("d1").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "votp.php?q=" + a + "&k="+ b , true);
+        xmlhttp.send();
+
+}
+</script>
+<script>
+function usern(){
+var a = document.getElementById("username").value;
+a = a.replace(/\s+/g, '');
+if(a.length < 8){
+document.getElementById("u").innerHTML = "&nbsp;&nbsp;Username should be of atleast 8 characters";
+
+}
+else if(a.length > 16){
+document.getElementById("u").innerHTML = "&nbsp;&nbsp;Username should be of atmost 16 characters";
+
+}
+else{
+document.getElementById("u").innerHTML = "";
+}
+}
+function n(){
+var x = 0;
+var y = 0;
+var k = document.getElementById("password").value;
+k = k.replace(/\s+/g, '');
+var m = k.length;
+if(m < 8){
+document.getElementById("p").innerHTML = "Password should be of atleast 8 characters";
+}
+else if(m > 16){
+document.getElementById("p").innerHTML = "Password should be of atmost 16 characters";
+}
+else{
+for(var i = 0; i < m; i++){        
+var l = k.substring(i,i+1);
+if(l === "@" || l === "#" || l === "$" || l === "%" || l === "%" || l === "^" || l === "&" || l === "*" || l === "!" || l === "_"){
+y = 1;}
+if(!isNaN(l)){
+x = 1;
+}
+}
+if(x == 0 && y == 0){
+document.getElementById("p").innerHTML = "Please enter atleast one number value";
+}
+else if(x== 0 && y == 1){
+document.getElementById("p").innerHTML = "Please enter atleast one number value";}
+else if(x==1 && y == 0){
+document.getElementById("p").innerHTML = "Please enter atleast one special character";
+}
+else{
+document.getElementById("p").innerHTML = "";
+}
+}
+}
+function c(){
+var a = document.getElementById("cpassword").value;
+var b = document.getElementById("password").value;
+var m = a.length;
+for(var i = 0; i<m ;i++){
+var l = a.substring(i,i+1);
+var j = b.substring(i,i+1);
+if(l != j){
+document.getElementById("cp").innerHTML = "Password Donot Match";
+break;
+}
+else{
+document.getElementById("cp").innerHTML = "";
+}
+}
+}
+function che(){
+var x = document.getElementById("cpassword").value;
+var y = document.getElementById("password").value;
+var a = document.getElementById("u").textContent;
+var b = document.getElementById("p").textContent;
+var c = document.getElementById("cp").textContent;
+if(a != "" || b != "" || c != ""){
+alert("Username or Password not to our constraints");
+event.preventDefault();
+}
+else if(x != y){
+alert("Password donot match");
+event.preventDefault();
+}
+}
+</script>
+</body>
+</html>

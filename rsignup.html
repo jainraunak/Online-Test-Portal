@@ -1,0 +1,49 @@
+<HTML>
+<HEAD><TITLE>Restaurant Owner SignUp</TITLE></HEAD>
+<STYLE>
+#d1{
+color : white;
+background-color : red;}
+#d{
+color : white;
+background-color : #0000ff;
+
+width : 50%;}
+table td{
+color : gold;
+}
+</STYLE>
+<BODY BGCOLOR = "#CDBE42">
+<center><div id = "d">
+<DIV ID = "d1"><CENTER><H1>Restaurant Owner SignUp</H1></CENTER></DIV>
+<FORM action = "rsign.php" method = "post">
+<div id = "d2"><br><center><TABLE CELLSPACING = "10PX" CELLPADDING = "10PX">
+<TR><TD>Username : </TD><TD><INPUT TYPE = "TEXT" ID = "username" name = "username" size = "50" placeholder = "Username" required></TD></TR>
+<TR><TD>Password : </TD><TD><INPUT TYPE = "Password" ID = "password" name = "password" size = "50" placeholder = "Password"></TD></TR>
+<TR><TD>Confirm Password : </TD><TD><INPUT TYPE = "Password" ID = "cpassword" name = "cpassword" size = "50" placeholder = "Confirm Password"></TD></TR>
+<TR><TD>Owner Name : </TD><TD><INPUT TYPE = "TEXT" ID = "oname" name = "oname" size = "50" placeholder = "Owner Name" required></TD></TR>
+<TR><TD>Owner Phone No. : </TD><TD><INPUT TYPE = "TEXT" ID = "phone" name = "phone" size = "50" placeholder = "Phone Number" required></TD></TR>
+<TR><TD>Owner Gender : </TD><TD><INPUT TYPE = "Radio" name = "gender" id = "male" value = "Male" required>Male <INPUT TYPE = "Radio" name = "gender" id = "female" value = "Female">Female</TD></TR>
+<TR><TD>Owner Email : </TD><TD><INPUT TYPE = "TEXT" ID = "email" name = "email" size = "50" placeholder = "Email" required></TD></TR>
+<TR><TD>Owner Address : </TD><TD><TEXTAREA style="font-size: 10pt; height: 150px; width:350px; " name = "address" placeholder = "Address" required></TEXTAREA></TD></TR>
+</TABLE></center>
+<center><input type = "submit" value = "SignUp" onclick = "check();" style = "color: gold;background-color: #4CAF50;display: inline-block;
+  font-size: 16px;
+  text-align: center; cursor: pointer;"></center><br>
+</div>
+</FORM>
+</div></center>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+function check(){
+var a = document.getElementById("password").value;
+var b = document.getElementById("cpassword").value;
+if(a != b){
+alert("Enter Correct Password");
+event.preventDefault();
+}
+}
+</script>
+
+</BODY>
+</HTML>
